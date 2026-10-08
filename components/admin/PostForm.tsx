@@ -24,11 +24,14 @@ export default function PostForm({
   initial,
   categories,
   submitLabel,
+  returnTo,
 }: {
   action: (prev: FormState, formData: FormData) => Promise<FormState>
   initial: PostFormValues
   categories: readonly string[]
   submitLabel: string
+  /** Page to come back to after saving or cancelling (board, post, or admin list). */
+  returnTo?: string
 }) {
   const [state, formAction, saving] = useActionState(action, undefined)
   const [files, setFiles] = useState<Attachment[]>(initial.attachments)
@@ -57,6 +60,7 @@ export default function PostForm({
 
   return (
     <form className="form" action={formAction}>
+      {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
       {state?.error && (
         <p className="notice err" role="alert">
           {state.error}
@@ -137,7 +141,7 @@ export default function PostForm({
       </div>
 
       <div className="form-actions">
-        <Link className="pill ghost" href="/admin">
+        <Link className="pill ghost" href={returnTo ?? '/admin'}>
           취소
         </Link>
         <button className="pill" type="submit" disabled={saving || pending.length > 0}>

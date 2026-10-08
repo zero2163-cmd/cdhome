@@ -3,7 +3,7 @@
 import { useActionState } from 'react'
 import { login } from '../actions'
 
-export default function LoginForm() {
+export default function LoginForm({ returnTo }: { returnTo?: string }) {
   const [state, action, pending] = useActionState(login, undefined)
   return (
     <form className="form" action={action}>
@@ -12,6 +12,7 @@ export default function LoginForm() {
           {state.error}
         </p>
       )}
+      {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
       <label className="field">
         <span>비밀번호</span>
         <input className="input" name="password" type="password" autoComplete="current-password" required autoFocus />

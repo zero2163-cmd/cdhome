@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { connection } from 'next/server'
 import { Suspense } from 'react'
+import AdminStrip from '@/components/AdminStrip'
 import PostRows from '@/components/PostRows'
+import { isAdmin } from '@/lib/auth'
 import { CATEGORIES, countByCategory, isCategory, listPosts } from '@/lib/posts'
 
 export const metadata: Metadata = { title: 'IR · 공시' }
@@ -43,9 +45,11 @@ async function Board({ searchParams }: Pick<PageProps<'/ir'>, 'searchParams'>) {
   const page = Math.max(1, Number(sp.page) || 1)
   const counts = countByCategory()
   const { rows, pages, total } = listPosts({ category: cat, q, page })
+  const admin = await isAdmin()
 
   return (
     <>
+      {admin && <AdminStrip returnTo="/ir" />}
       <div className="tools">
         <nav className="tabs" aria-label="분류">
           {(['전체', ...CATEGORIES] as const).map((c) => {
@@ -58,15 +62,22 @@ async function Board({ searchParams }: Pick<PageProps<'/ir'>, 'searchParams'>) {
             )
           })}
         </nav>
-        <form className="search" action="/ir" role="search">
-          {cat && <input type="hidden" name="cat" value={cat} />}
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <input name="q" type="search" defaultValue={q} placeholder="제목 검색" aria-label="게시글 제목 검색" />
-          <button type="submit">검색</button>
-        </form>
+        <div className="tools-right">
+          <form className="search" action="/ir" role="search">
+            {cat && <input type="hidden" name="cat" value={cat} />}
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <input name="q" type="search" defaultValue={q} placeholder="제목 검색" aria-label="게시글 제목 검색" />
+            <button type="submit">검색</button>
+          </form>
+          {admin && (
+            <Link className="pill sm" href="/admin/posts/new?returnTo=/ir">
+              + 글쓰기
+            </Link>
+          )}
+        </div>
       </div>
       <PostRows
         rows={rows}

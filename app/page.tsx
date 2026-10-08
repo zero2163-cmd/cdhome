@@ -153,7 +153,7 @@ export default function HomePage() {
               <small>Subsidiary</small>
               <div className="node-body">
                 <h3>카옥션</h3>
-                <p>자동차 경매 플랫폼 · 자산 · 채권 · 프로 · 셀프 경매 운영</p>
+                <p>자동차 경매 플랫폼 · 채권 · 자산 · 프로 · 셀프 경매 운영</p>
               </div>
             </div>
           </div>
@@ -185,12 +185,12 @@ export default function HomePage() {
             </div>
             <div className="chips">
               <div>
-                <b>자산 경매</b>
-                <span>안정적인 차량 거래</span>
-              </div>
-              <div>
                 <b>채권 경매</b>
                 <span>실거래율 91% 이상</span>
+              </div>
+              <div>
+                <b>자산 경매</b>
+                <span>안정적인 차량 거래</span>
               </div>
               <div>
                 <b>프로 경매</b>

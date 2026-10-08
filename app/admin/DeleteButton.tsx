@@ -7,10 +7,12 @@ export default function DeleteButton({
   id,
   title,
   action,
+  returnTo,
 }: {
   id: number
   title: string
   action: (formData: FormData) => Promise<void>
+  returnTo?: string
 }) {
   const [confirming, setConfirming] = useState(false)
   if (!confirming) {
@@ -23,6 +25,7 @@ export default function DeleteButton({
   return (
     <form action={action} style={{ display: 'flex', gap: 6 }}>
       <input type="hidden" name="id" value={id} />
+      {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
       <button className="pill danger sm" type="submit" aria-label={`‘${title}’ 삭제 확인`}>
         삭제 확인
       </button>

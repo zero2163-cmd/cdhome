@@ -237,6 +237,17 @@ footer.site .wrap { display: flex; justify-content: space-between; gap: 20px; fl
 footer.site .links { display: flex; gap: 22px; flex-wrap: wrap }
 footer.site a:hover { color: var(--fg) }
 
+/* admin controls on the public board */
+.tools-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; min-width: 0 }
+.admin-strip { display: flex; justify-content: space-between; align-items: center; gap: 8px 16px; flex-wrap: wrap; padding: 12px 18px; margin-bottom: 16px; border-radius: 14px; background: color-mix(in srgb, var(--mint) 22%, var(--bg)); font-size: 13.5px }
+.admin-strip b { font-weight: 600; color: var(--brand) }
+:root[data-theme="dark"] .admin-strip b { color: var(--mint) }
+.admin-strip-links { display: flex; gap: 16px; align-items: center }
+.admin-strip-links a, .admin-strip-links button { font: inherit; font-size: 13.5px; color: var(--fg); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px }
+.admin-strip-links form { display: contents }
+.owner-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap }
+.owner-actions .pill.sm { height: 48px; padding: 0 22px; font-size: 15px }
+
 /* admin */
 .admin-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px }
 .admin-bar .who { font-size: 13.5px; color: var(--muted) }
@@ -317,6 +328,8 @@ footer.site a:hover { color: var(--fg) }
   .rows .d { grid-column: 1; grid-row: 3 }
   .rows .go { grid-row: 2 / 4; grid-column: 2 }
   .search { width: 100% }
+  .tools-right { width: 100% }
+  .tools-right .search { flex: 1 }
   .search input { width: 100% }
   .post-nav, .row-2 { grid-template-columns: minmax(0, 1fr) }
   .post-nav .next { text-align: left }
