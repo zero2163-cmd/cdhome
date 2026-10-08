@@ -79,8 +79,8 @@ export default function HomePage() {
                   더 큰 거래를 만든다고 믿습니다.
                 </p>
                 <p>
-                  그룹의 전략, 재무, 거버넌스를 맡아 자회사가 본업에 집중하도록 돕고, 모빌리티 유통 밸류체인 안에서
-                  다음 포트폴리오를 찾고 있습니다.
+                  그룹의 전략, 재무, 거버넌스를 맡아 자회사가 본업에 집중하도록 돕고, 장기적인 관점에서 카옥션의
+                  성장을 함께 만들어 갑니다.
                 </p>
               </div>
             </div>
@@ -135,27 +135,26 @@ export default function HomePage() {
               <h2>지배구조</h2>
             </div>
             <p>
-              지주회사 카동 아래 자동차 경매 플랫폼 카옥션이 있습니다. 모빌리티 유통 밸류체인 안에서 다음 포트폴리오를
-              검토하고 있습니다.
+              지주회사 카동이 그룹의 전략과 재무, 거버넌스를 맡고, 자회사 카옥션이 자동차 경매 사업을 운영합니다.
             </p>
           </div>
           <div className="struct">
             <div className="node hold">
-              <div style={{ display: 'grid', gap: 8 }}>
-                <small>Holding company</small>
+              <small>Holding company</small>
+              <div className="node-body">
                 <h3>카동</h3>
+                <p>그룹 전략 · 재무 · 거버넌스 · 투자</p>
               </div>
-              <p>그룹 전략 · 재무 · 거버넌스 · 투자</p>
             </div>
-            <div className="node">
+            <span className="struct-link" aria-hidden="true">
+              →
+            </span>
+            <div className="node sub">
               <small>Subsidiary</small>
-              <h4>카옥션</h4>
-              <p style={{ color: 'var(--muted)' }}>자동차 경매 플랫폼. 자산 · 채권 · 프로 · 셀프 경매 운영</p>
-            </div>
-            <div className="node next">
-              <small>Pipeline</small>
-              <h4>Next portfolio</h4>
-              <p style={{ color: 'var(--muted)' }}>자동차 금융, 차량 진단, 물류 분야 검토 중</p>
+              <div className="node-body">
+                <h3>카옥션</h3>
+                <p>자동차 경매 플랫폼 · 자산 · 채권 · 프로 · 셀프 경매 운영</p>
+              </div>
             </div>
           </div>
         </div>
@@ -170,65 +169,52 @@ export default function HomePage() {
             </div>
             <p>카동이 투자하고 함께 운영하는 회사입니다.</p>
           </div>
-          <div className="pf">
-            <article className="pf-main">
-              <div className="head">
-                <h3>카옥션</h3>
-                <span className="badge">Mobility marketplace · 자회사</span>
-              </div>
+          <article className="pf-main">
+            <div className="head">
+              <h3>카옥션</h3>
+              <span className="badge">Mobility marketplace · 자회사</span>
+            </div>
+            <div className="intro">
               <p className="desc">
                 검증된 정보와 투명한 절차로 안전하고 효율적인 차량 거래 환경을 제공하는 자동차 경매 플랫폼입니다.
               </p>
-              <div className="chips">
-                <div>
-                  <b>자산 경매</b>
-                  <span>안정적인 차량 거래</span>
-                </div>
-                <div>
-                  <b>채권 경매</b>
-                  <span>실거래율 91% 이상</span>
-                </div>
-                <div>
-                  <b>프로 경매</b>
-                  <span>평가사 진단, 비대면</span>
-                </div>
-                <div>
-                  <b>셀프 경매</b>
-                  <span>직접 확인 후 거래</span>
-                </div>
+              <blockquote>
+                “새로워진 카옥션, 경매의 기준을 다시 만듭니다.”
+                <small>카옥션 브랜드 슬로건</small>
+              </blockquote>
+            </div>
+            <div className="chips">
+              <div>
+                <b>자산 경매</b>
+                <span>안정적인 차량 거래</span>
               </div>
-              <div className="foot">
-                <div className="k">
-                  <span>
-                    <b>230,000+</b>누적 경매
-                  </span>
-                  <span>
-                    <b>8,000+</b>누적 딜러
-                  </span>
-                </div>
-                <a className="pill" href="https://www2.car-auction.co.kr/" target="_blank" rel="noopener noreferrer">
-                  카옥션 방문 <span className="ar">↗</span>
-                </a>
+              <div>
+                <b>채권 경매</b>
+                <span>실거래율 91% 이상</span>
               </div>
-            </article>
-            <div className="pf-side">
-              <div className="pf-next">
-                <span className="label">Coming next</span>
-                <h4>
-                  다음 포트폴리오를
-                  <br />
-                  찾고 있습니다
-                </h4>
-                <p>자동차 유통 밸류체인 안의 팀이라면 제안을 보내 주세요.</p>
-                <a className="pill ghost" href="#contact" style={{ justifySelf: 'start' }}>
-                  제안하기 <span className="ar">→</span>
-                </a>
+              <div>
+                <b>프로 경매</b>
+                <span>평가사 진단, 비대면</span>
               </div>
-              <div className="pf-quote">
-                “새로워진 카옥션, 경매의 기준을 다시 만듭니다.”<small>카옥션 브랜드 슬로건</small>
+              <div>
+                <b>셀프 경매</b>
+                <span>직접 확인 후 거래</span>
               </div>
             </div>
-          </div>
+            <div className="foot">
+              <div className="k">
+                <span>
+                  <b>230,000+</b>누적 경매
+                </span>
+                <span>
+                  <b>8,000+</b>누적 딜러
+                </span>
+              </div>
+              <a className="pill" href="https://www2.car-auction.co.kr/" target="_blank" rel="noopener noreferrer">
+                카옥션 방문 <span className="ar">↗</span>
+              </a>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -244,43 +230,6 @@ export default function HomePage() {
           <Suspense fallback={<IrSkeleton />}>
             <IrSummary />
           </Suspense>
-        </div>
-      </section>
-
-      <section className="sec" id="news" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="sec-head">
-            <div>
-              <span className="label">Newsroom</span>
-              <h2>소식</h2>
-            </div>
-          </div>
-          <div className="news">
-            <a href="#news">
-              <div className="thumb t1">
-                <div />
-                <span>카옥션</span>
-              </div>
-              <p className="meta">2026.09.22</p>
-              <h4>새로워진 카옥션, 경매의 기준을 다시 만듭니다</h4>
-            </a>
-            <a href="#news">
-              <div className="thumb t2">
-                <div />
-                <span>카동</span>
-              </div>
-              <p className="meta">2026.07.08</p>
-              <h4>카동, 지주회사 체제 전환 완료</h4>
-            </a>
-            <a href="#news">
-              <div className="thumb t3">
-                <div />
-                <span>카옥션</span>
-              </div>
-              <p className="meta">2026.05.14</p>
-              <h4>누적 경매 23만 건 돌파</h4>
-            </a>
-          </div>
         </div>
       </section>
 
