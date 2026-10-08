@@ -280,9 +280,10 @@ footer.site a:hover { color: var(--fg) }
 .login-card h1 { font-size: 30px }
 
 /* editor */
-.editor { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--bg) }
+/* No overflow:hidden here: it would make the editor the sticky container and push the toolbar over the text. */
+.editor { border: 1px solid var(--line); border-radius: 18px; background: var(--bg) }
 .editor:focus-within { border-color: var(--fg) }
-.toolbar { display: flex; flex-wrap: wrap; gap: 2px; padding: 8px; border-bottom: 1px solid var(--line); background: var(--soft); position: sticky; top: 76px; z-index: 2 }
+.toolbar { display: flex; flex-wrap: wrap; gap: 2px; padding: 8px; border-bottom: 1px solid var(--line); border-radius: 17px 17px 0 0; background: var(--soft); position: sticky; top: 76px; z-index: 2 }
 .toolbar button { font: inherit; font-size: 13px; font-weight: 500; min-width: 34px; height: 34px; padding: 0 9px; border-radius: 9px; border: 0; background: transparent; color: var(--fg); cursor: pointer }
 .toolbar button:hover { background: var(--bg) }
 .toolbar button[aria-pressed="true"] { background: var(--fg); color: var(--bg) }
