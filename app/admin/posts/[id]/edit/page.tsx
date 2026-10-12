@@ -4,7 +4,7 @@ import { connection } from 'next/server'
 import { Suspense } from 'react'
 import PostForm from '@/components/admin/PostForm'
 import RequireAdmin from '@/components/RequireAdmin'
-import { CATEGORIES, getAttachments, getPost } from '@/lib/posts'
+import { getAttachments, getPost } from '@/lib/posts'
 import { safeReturnTo } from '@/lib/return-to'
 import { updatePost } from '../../../actions'
 
@@ -38,10 +38,9 @@ async function EditForm({ params, searchParams }: Pick<PageProps<'/admin/posts/[
   return (
     <PostForm
       action={updatePost.bind(null, post.id)}
-      categories={CATEGORIES}
       submitLabel="수정 내용 저장"
       returnTo={returnTo}
-      initial={{ title: post.title, category: post.category, content: post.content, pinned: !!post.pinned, attachments }}
+      initial={{ title: post.title, content: post.content, pinned: !!post.pinned, attachments }}
     />
   )
 }

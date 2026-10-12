@@ -1,6 +1,6 @@
 # 카동 CARDONG 홈페이지
 
-모회사 카동의 회사 홈페이지와 IR · 공시 게시판입니다. 디자인은 시안 B(https://claude.ai/artifact/RVUmo51sQcSbwTU7RJVeDX)를 옮겼습니다.
+모회사 카동의 회사 홈페이지와 공지사항 게시판입니다. 디자인은 시안 B(https://claude.ai/artifact/RVUmo51sQcSbwTU7RJVeDX)를 옮겼습니다.
 
 - Next.js 16 (App Router, Cache Components)
 - SQLite: Node.js 내장 `node:sqlite` 사용. 별도 DB 서버나 설치가 필요 없습니다.
@@ -32,9 +32,9 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 
 | 주소 | 내용 |
 |---|---|
-| `/` | 회사 홈. IR 영역에 최신 게시글 5개와 최근 주주총회 공고가 자동으로 표시됩니다. |
-| `/ir` | IR · 공시 게시판. 분류(주주총회·공시·공고), 제목 검색, 페이지 이동 |
-| `/ir/[번호]` | 게시글 상세. 첨부파일 내려받기, 이전 글/다음 글 |
+| `/` | 회사 홈. 공지사항 영역에 최신 공지와 최근 게시글 5개가 자동으로 표시됩니다. |
+| `/notice` | 공지사항 목록. 제목 검색, 페이지 이동 (분류 없음). 관리자로 로그인하면 글쓰기 버튼 표시 |
+| `/notice/[번호]` | 공지 상세. 첨부파일 내려받기, 이전 글/다음 글. 관리자로 로그인하면 수정·삭제 버튼 표시 |
 | `/admin` | 관리자: 게시글 목록, 수정, 삭제 (로그인 필요) |
 | `/admin/posts/new` | 새 글 쓰기 |
 
@@ -47,7 +47,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"
 
 ## 보안
 
-- 관리자 로그인은 비밀번호 하나(`ADMIN_PASSWORD`)를 IR 담당자가 함께 쓰는 방식입니다. 담당자별 계정이 필요해지면 로그인 방식을 바꿔야 합니다.
+- 관리자 로그인은 비밀번호 하나(`ADMIN_PASSWORD`)를 담당자가 함께 쓰는 방식입니다. 담당자별 계정이 필요해지면 로그인 방식을 바꿔야 합니다.
 - 로그인 세션은 서명된 쿠키로 8시간 유지됩니다.
 - 글 저장 시 본문 HTML에서 스크립트, 이벤트 속성, 외부 이미지 등을 제거합니다(`lib/sanitize.ts`).
 - 업로드는 로그인한 관리자만 가능하며, 형식과 크기를 서버에서 다시 검사합니다.

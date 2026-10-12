@@ -7,7 +7,7 @@ import Logo from './Logo'
 const NAV = [
   { href: '/#about', label: '회사소개' },
   { href: '/#portfolio', label: '포트폴리오' },
-  { href: '/ir', label: 'IR · 공시' },
+  { href: '/notice', label: '공지사항' },
 ]
 
 // The theme lives on <html data-theme>; the inline script in layout.tsx sets it before paint.

@@ -13,7 +13,6 @@ type Pending = { key: string; name: string }
 
 export type PostFormValues = {
   title: string
-  category: string
   content: string
   pinned: boolean
   attachments: Attachment[]
@@ -22,13 +21,11 @@ export type PostFormValues = {
 export default function PostForm({
   action,
   initial,
-  categories,
   submitLabel,
   returnTo,
 }: {
   action: (prev: FormState, formData: FormData) => Promise<FormState>
   initial: PostFormValues
-  categories: readonly string[]
   submitLabel: string
   /** Page to come back to after saving or cancelling (board, post, or admin list). */
   returnTo?: string
@@ -66,22 +63,10 @@ export default function PostForm({
           {state.error}
         </p>
       )}
-      <div className="row-2">
-        <label className="field">
-          <span>분류</span>
-          <select className="select" name="category" defaultValue={initial.category} required>
-            {categories.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="field">
-          <span>제목</span>
-          <input className="input" name="title" defaultValue={initial.title} maxLength={200} required placeholder="예: 제12기 정기주주총회 소집공고" />
-        </label>
-      </div>
+      <label className="field">
+        <span>제목</span>
+        <input className="input" name="title" defaultValue={initial.title} maxLength={200} required placeholder="예: 2026년 정기주주총회 소집 안내" />
+      </label>
       <label className="check">
         <input type="checkbox" name="pinned" defaultChecked={initial.pinned} /> 목록 맨 위에 공지로 고정
       </label>

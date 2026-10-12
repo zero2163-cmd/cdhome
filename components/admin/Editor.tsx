@@ -8,7 +8,7 @@ import { Placeholder } from '@tiptap/extensions'
 import { useRef, useState } from 'react'
 import { uploadFile } from './upload'
 
-// Rich-text editor for IR posts. Output HTML is mirrored into a hidden input named "content";
+// Rich-text editor for notice posts. Output HTML is mirrored into a hidden input named "content";
 // the server sanitizes it again on save.
 export default function Editor({ initialHTML, onError }: { initialHTML: string; onError: (msg: string) => void }) {
   const [html, setHtml] = useState(initialHTML)

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import PostForm from '@/components/admin/PostForm'
 import RequireAdmin from '@/components/RequireAdmin'
-import { CATEGORIES } from '@/lib/posts'
 import { safeReturnTo } from '@/lib/return-to'
 import { createPost } from '../../actions'
 
@@ -31,10 +30,9 @@ async function NewForm({ searchParams }: Pick<PageProps<'/admin/posts/new'>, 'se
   return (
     <PostForm
       action={createPost}
-      categories={CATEGORIES}
       submitLabel="게시하기"
       returnTo={returnTo}
-      initial={{ title: '', category: CATEGORIES[0], content: '', pinned: false, attachments: [] }}
+      initial={{ title: '', content: '', pinned: false, attachments: [] }}
     />
   )
 }

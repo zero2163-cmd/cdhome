@@ -12,9 +12,9 @@ export default function LoginPage(props: PageProps<'/admin/login'>) {
     <main className="wrap">
       <div className="login-card">
         <span className="label">Admin</span>
-        <h1>IR 게시판 관리자</h1>
+        <h1>공지사항 관리자</h1>
         <p style={{ color: 'var(--muted)', fontSize: 15 }}>
-          로그인하면 IR · 공시 게시판에서 글을 쓰고, 게시글을 수정하거나 삭제할 수 있습니다.
+          로그인하면 공지사항에서 글을 쓰고, 게시글을 수정하거나 삭제할 수 있습니다.
         </p>
         {authConfigured() ? (
           <Suspense fallback={<LoginForm />}>
@@ -26,8 +26,8 @@ export default function LoginPage(props: PageProps<'/admin/login'>) {
             입력한 뒤 서버를 다시 시작해 주세요.
           </p>
         )}
-        <Link href="/ir" style={{ fontSize: 14, color: 'var(--muted)' }}>
-          ← IR · 공시 게시판으로
+        <Link className="back" href="/notice">
+          ← 공지사항으로
         </Link>
       </div>
     </main>

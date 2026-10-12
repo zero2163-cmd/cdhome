@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { connection } from 'next/server'
 import { Suspense } from 'react'
-import { CategoryChip } from '@/components/PostRows'
 import RequireAdmin from '@/components/RequireAdmin'
 import { formatDate } from '@/lib/format'
 import { listPosts } from '@/lib/posts'
@@ -57,7 +56,6 @@ async function Dashboard({ searchParams }: Pick<PageProps<'/admin'>, 'searchPara
           <thead>
             <tr>
               <th style={{ width: 60 }}>번호</th>
-              <th style={{ width: 110 }}>분류</th>
               <th>제목</th>
               <th style={{ width: 70 }}>첨부</th>
               <th style={{ width: 70 }}>조회</th>
@@ -68,7 +66,7 @@ async function Dashboard({ searchParams }: Pick<PageProps<'/admin'>, 'searchPara
           <tbody>
             {rows.length === 0 && (
               <tr>
-                <td colSpan={7} className="empty">
+                <td colSpan={6} className="empty">
                   아직 게시글이 없습니다. 오른쪽 위 ‘새 글 쓰기’로 첫 글을 등록해 보세요.
                 </td>
               </tr>
@@ -77,11 +75,8 @@ async function Dashboard({ searchParams }: Pick<PageProps<'/admin'>, 'searchPara
               <tr key={p.id}>
                 <td className="num">{p.id}</td>
                 <td>
-                  <CategoryChip category={p.category} />
-                </td>
-                <td>
                   {p.pinned ? <b style={{ color: 'var(--brand)', marginRight: 6, fontSize: 12.5 }}>공지</b> : null}
-                  <Link href={`/ir/${p.id}`}>{p.title}</Link>
+                  <Link href={`/notice/${p.id}`}>{p.title}</Link>
                 </td>
                 <td className="num">{p.file_count}</td>
                 <td className="num">{p.views}</td>

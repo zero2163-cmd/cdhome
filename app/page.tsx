@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import HeroCanvas from '@/components/HeroCanvas'
 import PostRows from '@/components/PostRows'
 import { formatDate } from '@/lib/format'
-import { latestByCategory, listPosts } from '@/lib/posts'
+import { latestPost, listPosts } from '@/lib/posts'
 
 export default function HomePage() {
   return (
@@ -31,8 +31,8 @@ export default function HomePage() {
                   절차로 거래의 기준을 만듭니다.
                 </p>
                 <div className="cta">
-                  <Link className="pill lux" href="/ir">
-                    주주총회 · 공시 <span className="ar">→</span>
+                  <Link className="pill lux" href="/notice">
+                    공지사항 <span className="ar">→</span>
                   </Link>
                   <a className="tlink" href="#about">
                     회사소개
@@ -218,14 +218,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="sec" id="ir">
+      <section className="sec" id="notice">
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <span className="label">Investor relations</span>
-              <h2>IR · 공시</h2>
+              <span className="label">Notice</span>
+              <h2>공지사항</h2>
             </div>
-            <p>주주총회 소집 통지와 결과, 공고, 공시 자료를 게시합니다. 모든 주주께 같은 날 동일한 정보를 제공합니다.</p>
+            <p>카동의 공지와 주주 안내, 공고를 게시합니다. 모든 주주께 같은 날 동일한 정보를 제공합니다.</p>
           </div>
           <Suspense fallback={<IrSkeleton />}>
             <IrSummary />
@@ -267,28 +267,28 @@ export default function HomePage() {
 async function IrSummary() {
   await connection()
   const { rows } = listPosts({ pageSize: 5 })
-  const meeting = latestByCategory('주주총회')
+  const latest = latestPost()
   return (
     <div className="ir">
       <aside className="agm">
-        <span className="lbl">최근 주주총회 공고</span>
-        {meeting ? (
+        <span className="lbl">최신 공지</span>
+        {latest ? (
           <>
-            <div className="d">{formatDate(meeting.created_at).slice(5)}</div>
-            <h4>{meeting.title}</h4>
-            <p>{formatDate(meeting.created_at)} 게시</p>
-            <Link className="pill" href={`/ir/${meeting.id}`}>
-              공고 보기 <span className="ar">→</span>
+            <div className="d">{formatDate(latest.created_at).slice(5)}</div>
+            <h4>{latest.title}</h4>
+            <p>{formatDate(latest.created_at)} 게시</p>
+            <Link className="pill" href={`/notice/${latest.id}`}>
+              공지 보기 <span className="ar">→</span>
             </Link>
           </>
         ) : (
-          <h4>등록된 주주총회 공고가 없습니다.</h4>
+          <h4>등록된 공지가 없습니다.</h4>
         )}
       </aside>
       <div className="board">
         <PostRows rows={rows} emptyText="아직 등록된 게시글이 없습니다." />
         <div className="more">
-          <Link className="pill ghost sm" href="/ir">
+          <Link className="pill ghost sm" href="/notice">
             전체 게시글 보기 <span className="ar">→</span>
           </Link>
         </div>
@@ -301,7 +301,7 @@ function IrSkeleton() {
   return (
     <div className="ir">
       <aside className="agm">
-        <span className="lbl">최근 주주총회 공고</span>
+        <span className="lbl">최신 공지</span>
       </aside>
       <div className="board">
         <p className="empty">게시글을 불러오는 중입니다.</p>

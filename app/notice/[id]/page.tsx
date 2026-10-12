@@ -5,19 +5,18 @@ import { Suspense } from 'react'
 import DeleteButton from '@/app/admin/DeleteButton'
 import { deletePost } from '@/app/admin/actions'
 import AdminStrip from '@/components/AdminStrip'
-import { CategoryChip } from '@/components/PostRows'
 import { isAdmin } from '@/lib/auth'
 import { formatBytes, formatDate } from '@/lib/format'
 import { getAttachments, getNeighbours, getPost, incrementViews } from '@/lib/posts'
 
-export default function PostPage(props: PageProps<'/ir/[id]'>) {
+export default function PostPage(props: PageProps<'/notice/[id]'>) {
   return (
     <main>
       <div className="wrap page-head" style={{ paddingBottom: 24 }}>
         <nav className="crumbs" aria-label="위치">
           <Link href="/">홈</Link>
           <span>/</span>
-          <Link href="/ir">IR · 공시</Link>
+          <Link href="/notice">공지사항</Link>
         </nav>
       </div>
       <div className="wrap page-body">
@@ -29,7 +28,7 @@ export default function PostPage(props: PageProps<'/ir/[id]'>) {
   )
 }
 
-async function Article({ params }: Pick<PageProps<'/ir/[id]'>, 'params'>) {
+async function Article({ params }: Pick<PageProps<'/notice/[id]'>, 'params'>) {
   await connection()
   const { id } = await params
   const post = /^\d+$/.test(id) ? getPost(Number(id)) : undefined
@@ -41,10 +40,9 @@ async function Article({ params }: Pick<PageProps<'/ir/[id]'>, 'params'>) {
 
   return (
     <>
-      {admin && <AdminStrip returnTo={`/ir/${post.id}`} />}
+      {admin && <AdminStrip returnTo={`/notice/${post.id}`} />}
       <article className="article">
         <header className="hd">
-          <CategoryChip category={post.category} />
           <h1>{post.title}</h1>
           <div className="meta">
             <span>등록일 {formatDate(post.created_at)}</span>
@@ -70,7 +68,7 @@ async function Article({ params }: Pick<PageProps<'/ir/[id]'>, 'params'>) {
 
         <nav className="post-nav" aria-label="이전 글, 다음 글">
           {older ? (
-            <Link href={`/ir/${older.id}`}>
+            <Link href={`/notice/${older.id}`}>
               <small>이전 글</small>
               <b>{older.title}</b>
             </Link>
@@ -78,7 +76,7 @@ async function Article({ params }: Pick<PageProps<'/ir/[id]'>, 'params'>) {
             <span />
           )}
           {newer ? (
-            <Link className="next" href={`/ir/${newer.id}`}>
+            <Link className="next" href={`/notice/${newer.id}`}>
               <small>다음 글</small>
               <b>{newer.title}</b>
             </Link>
@@ -87,15 +85,15 @@ async function Article({ params }: Pick<PageProps<'/ir/[id]'>, 'params'>) {
           )}
         </nav>
         <div className="actions">
-          <Link className="pill ghost" href="/ir">
+          <Link className="pill ghost" href="/notice">
             ← 목록으로
           </Link>
           {admin && (
             <div className="owner-actions">
-              <Link className="pill ghost" href={`/admin/posts/${post.id}/edit?returnTo=/ir/${post.id}`}>
+              <Link className="pill ghost" href={`/admin/posts/${post.id}/edit?returnTo=/notice/${post.id}`}>
                 수정
               </Link>
-              <DeleteButton id={post.id} title={post.title} action={deletePost} returnTo="/ir" />
+              <DeleteButton id={post.id} title={post.title} action={deletePost} returnTo="/notice" />
             </div>
           )}
         </div>
